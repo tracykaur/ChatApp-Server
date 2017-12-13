@@ -3,7 +3,9 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const Message = require('./models/Message');
+const cors = require('cors');
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/api/messages', (req, res) => {
   console.log('received GET request');

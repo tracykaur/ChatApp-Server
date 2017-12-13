@@ -1,16 +1,20 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const Message = require('./models/message');
-
 app.use(bodyParser.json());
 
 app.get('/api/messages', (req, res) => {
   console.log('received GET request');
-  Message.find().then(result => {
-    res.send(result.reverse());
-    console.log('current messages sent');
-  });
+  Message.find()
+    .then(result => {
+      res.send(result.reverse());
+      console.log('current messages sent');
+    })
+    .catch(error => {
+      console.log(error);
+    });
 });
 
 app.post('/api/messages', (req, res) => {
@@ -31,5 +35,7 @@ app.post('/api/messages', (req, res) => {
     res.send(message);
   });
 });
+
+const PORT = process.env.PORT || 5000;
 
 app.listen(3001, () => console.log('Example app listening on port 3001!'));

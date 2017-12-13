@@ -38,4 +38,4 @@ app.post('/api/messages', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(3001, () => console.log('Example app listening on port 3001!'));
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`));
